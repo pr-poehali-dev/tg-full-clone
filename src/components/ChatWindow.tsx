@@ -62,6 +62,20 @@ export default function ChatWindow({ chatId }: ChatWindowProps) {
   const currentChat = chatNames[chatId];
   const currentMessages = messages[chatId] || [];
 
+  if (!currentChat) {
+    return (
+      <div className="flex-1 flex items-center justify-center bg-[hsl(var(--telegram-bg))]">
+        <div className="text-center space-y-4">
+          <div className="w-32 h-32 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
+            <Icon name="MessageCircle" size={64} className="text-primary" />
+          </div>
+          <h2 className="text-2xl font-medium text-foreground">Чат не найден</h2>
+          <p className="text-muted-foreground">Выберите другой чат из списка</p>
+        </div>
+      </div>
+    );
+  }
+
   const handleSendMessage = () => {
     if (!messageText.trim()) return;
 
